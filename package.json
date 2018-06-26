@@ -1,0 +1,24 @@
+{
+  "name": "dice-bot",
+  "version": "1.0.0",
+  "description": "Discord dice bot",
+  "main": "bot.js",
+  "repository": "",
+  "author": "Leif Olvång",
+  "license": "MIT",
+  "dependencies": {
+    "discord.io": "github:izy521/discord.io#master",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^10.3.5",
+    "@types/winston": "^2.3.9",
+    "typescript": "^2.9.2"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "docker": "docker build -t dicebot -f Dockerfile .",
+    "start": "docker run -t -d --name dicebot --restart always dicebot",
+    "down": "docker rm -f dicebot"
+  }
+}
