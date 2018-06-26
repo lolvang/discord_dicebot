@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Discord dice bot",
   "main": "bot.js",
-  "repository": "",
+  "repository": "https://github.com/lolvang/discord_dicebot",
   "author": "Leif Olvång",
   "license": "MIT",
   "dependencies": {
