@@ -22,8 +22,7 @@ export function Fall(val, loc) {
     ];
   } else if (val === 16) {
     return [
-      "Dödslag 14", "Faller", "Tappar", "Sår vänster ben", "Sår höger ben",
-      "Brytrisk 12 vänster ben", "Brytrisk 12 höger ben"
+      "Dödslag 14", "Faller", "Tappar", "Sår båda benen", "Brytrisk 12 båda benen"
     ];
   } else if (val === 15) {
     return [
@@ -48,8 +47,7 @@ export function Fall(val, loc) {
     ];
   } else if (val === 10) {
     return [
-      "Dödslag 8", "Faller", "Tappar", "Brytrisk 10 vänster ben", "Brytrisk 10 höger ben",
-      "Brytrisk 10 vänster arm", "Brytrisk 10 höger arm"
+      "Dödslag 8", "Faller", "Tappar", "Brytrisk 10 båda benen", "Brytrisk 10 båda armarna"
     ];
   } else if (val === 9) {
     return [
@@ -57,7 +55,7 @@ export function Fall(val, loc) {
     ];
   } else if (val === 8) {
     return [
-      "Faller", "Brytrisk 12 vänster ben", "Brytrisk 12 höger ben", "1 Smärta"
+      "Faller", "Brytrisk 12 båda benen", "1 Smärta"
     ];
   } else if (val === 7) {
     return [
@@ -65,7 +63,7 @@ export function Fall(val, loc) {
     ];
   } else if (val === 6) {
     return [
-      "Tappar", "Brytrisk 8 vänster arm", "Brytrisk 8 höger arm", "1 Smärta"
+      "Tappar", "Brytrisk 8 båda armarna", "1 Smärta"
     ];
   } else if (val === 5) {
     return [
