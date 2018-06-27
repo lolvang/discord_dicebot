@@ -95,7 +95,7 @@ function damage_message(inp, func){
   let [sum,rolls] = expression(comp,obdice);
   let se = skade_effekt(sum,mod,loc,func);
   if(["Fall", "Eld"].indexOf(func.name) >= 0){
-    return `${func.name}: utmattning:${se.utmattning}, resultat[${se.resultat}]\nskada=${sum},slag=(${rolls}),extraskada=${se.extraskada}`;
+    return `${func.name}: utmattning:${se.utmattning}, resultat:[${se.resultat}]\nskada=${sum},slag=(${rolls}),extraskada=${se.extraskada}`;
   }
   else {
     return `${func.name} ${hit_location[loc]}: utmattning:${se.utmattning}, resultat:[${se.resultat}]\nskada=${sum},slag=(${rolls}),extraskada=${se.extraskada}`;
