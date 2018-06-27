@@ -10,7 +10,9 @@ export function dice(n,s){
   let rolls = [];
   let sum = 0;
   for(let i = 0; i<n; ++i){
-    sum += randint(0,s);
+    let tmp = randint(0,s);
+    sum += tmp;
+    rolls.push(tmp);
   }
   return [sum,rolls];
 }
