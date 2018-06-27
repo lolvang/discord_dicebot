@@ -1,9 +1,9 @@
 import {randint} from "./util"
 export function Stick(val, loc){
   if(val >= 20){
-    if(loc===1){return [`Dödslag:${val+10}`, "1 Smärta", "Blödning 2/30"];}
-    else if(loc<5){return [`Dödslag:${val+10}`, "Blödning 3/36", "Inre skada"];}
-    else if(loc<9){return [`Dödslag:10`, "Tappar", "Sår", "Infektion 3/10"];}
+    if(loc===1){return [`Dödslag ${val+10}`, "1 Smärta", "Blödning 2/30"];}
+    else if(loc<5){return [`Dödslag ${val+10}`, "Blödning 3/36", "Inre skada"];}
+    else if(loc<9){return [`Dödslag 10`, "Tappar", "Sår", "Infektion 3/10"];}
     else{return ["Dödslag 10", "Faller", "Sår", "Infektion 3/10"];}
   }
   else if(val === 19){
