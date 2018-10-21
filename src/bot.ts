@@ -86,11 +86,11 @@ function damage_message(inp, func){
   }  
   let mod = param.indexOf("m") >=0 ? parseInt(param.substring(param.indexOf("m")+1)) : 0;
   let loc = randint(1,10);
-  if(param.indexOf("h")>=0){loc = 1;}
+  if(param.indexOf("hb")>=0){loc = 9;}
   else if(param.indexOf("t")>=0){loc = 2;}
   else if(param.indexOf("ha")>=0){loc = 5;}
   else if(param.indexOf("va")>=0){loc = 7;}
-  else if(param.indexOf("hb")>=0){loc = 9;}  
+  else if(param.indexOf("h")>=0){loc = 1;}  
   else if(param.indexOf("vb")>=0){loc = 10;}  
   let [sum,rolls] = expression(comp,obdice);
   let se = skade_effekt(sum,mod,loc,func);
