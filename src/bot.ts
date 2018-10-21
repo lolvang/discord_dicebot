@@ -18,7 +18,7 @@ let hit_location = {
   6:"Höger arm",
   7:"Vänster arm",
   8:"Vänster arm",
-  9:"Höger arm",
+  9:"Höger ben",
   10:"Vänster ben"
 }
 

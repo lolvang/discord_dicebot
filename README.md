@@ -18,5 +18,5 @@ A dicerolling bot for roleplaying games over discord
 # Starting the server
 Simply run the command `npm run start`
 
-#Commands
+# Commands
 To be added soon...
