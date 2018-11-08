@@ -6,7 +6,7 @@ export function randint(min, max) {
   return res;
 }
 
-export function dice(n,s){
+export function dice(n,s):[number,number[]]{
   let rolls = [];
   let sum = 0;
   for(let i = 0; i<n; ++i){
@@ -17,7 +17,7 @@ export function dice(n,s){
   return [sum,rolls];
 }
 
-export function obdice(n,s) {
+export function obdice(n,s):[number,number[]] {
   var rolls = []
   let obd_aux = () => {
     let x = randint(1, s);
@@ -33,4 +33,11 @@ export function obdice(n,s) {
     sum += obd_aux();
   }
   return [sum, rolls];
+}
+
+export function sobdice(n,s):[number,number[]]{  
+  let m = (n-3)*4;
+  let [sum, rolls] = obdice(3,s);
+  rolls.push(m);
+  return [sum+m, rolls];
 }
