@@ -1,13 +1,14 @@
-var Discord = require('discord.io');
-var logger = require('winston');
-var auth = require('./auth.json');
+const Discord = require('discord.io');
+const auth = require('./auth.json');
+
 import {Hugg} from "./hugg";
 import {Stick} from "./stick";
 import {Kross} from "./kross";
 import {Slag} from "./slag";
 import {Fall} from "./fall";
 import {Eld} from "./eld";
-import {randint,dice,obdice,sobdice} from "./util"
+import {randint,dice,obdice,sobdice,mobdice} from "./util"
+import {log} from "./logger"
 
 let hit_location = {
   1:"Huvud",
@@ -79,7 +80,7 @@ function roll_message(inp, func) {
 
 function damage_message(inp, func, dice_func=obdice){
   inp = inp.replace(/ /g, "");
-  logger.info("hit message inp:", inp);
+  log.info("hit message inp:", inp);
   let [param,comp] = ["",inp];
   if(inp.indexOf(",")>=0){
     [param,comp] = inp.split(/,/);
@@ -106,13 +107,6 @@ function hit_message(){
   return hit_location[randint(1,10)];
 }
 
-// Configure logger settings
-logger.remove(logger.transports.Console);
-logger.add(logger.transports.Console, {
-  colorize: true
-});
-logger.level = 'debug';
-
 // Initialize Discord Bot
 var bot = new Discord.Client({
   token: auth.token,
@@ -120,15 +114,16 @@ var bot = new Discord.Client({
 });
 
 bot.on('ready', function (evt) {
-  logger.info('Connected');
-  logger.info('Logged in as: ');
-  logger.info(bot.username + ' - (' + bot.id + ')');
+  log.info('Connected');
+  log.info('Logged in as: ');
+  log.info(bot.username + ' - (' + bot.id + ')');
 });
 
 bot.on('message', function (user, userID, channelID, message, evt) {
   // Our bot needs to know if it needs to execute a command
   // for this script it will listen for messages that will start with `!`
   if (message.substring(0, 1) == '!') {
+    log.info("bot read", message);
     try {
       var args = message.substring(1).toLowerCase();
       var resp = {to:channelID,message:""};
@@ -136,6 +131,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         resp.message = roll_message(args.substring(2), obdice);        
       } else if("sob" === args.substring(0,3)){
         resp.message = roll_message(args.substring(3), sobdice);
+      } else if("mob" === args.substring(0,3)){
+        resp.message = roll_message(args.substring(3), mobdice);
       } else if ("roll" === args.substring(0, 4)) {
         resp.message = roll_message(args.substring(4), dice);        
       } else if("hit" === args.substring(0,3)){
@@ -144,37 +141,50 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         resp.message = damage_message(args.substring(4),Hugg);
       } else if("shugg" === args.substring(0,5)){
         resp.message = damage_message(args.substring(4),Hugg, sobdice);
+      } else if("mhugg" === args.substring(0,5)){
+        resp.message = damage_message(args.substring(4),Hugg, mobdice);
       } else if("stick" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Stick);
       } else if("sstick" === args.substring(0,6)){
         resp.message = damage_message(args.substring(6),Stick, sobdice);
+      } else if("mstick" === args.substring(0,6)){
+        resp.message = damage_message(args.substring(6),Stick, mobdice);
       } else if("kross" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Kross);
       } else if("skross" === args.substring(0,6)){
         resp.message = damage_message(args.substring(6),Kross, sobdice);
+      } else if("mkross" === args.substring(0,6)){
+        resp.message = damage_message(args.substring(6),Kross, mobdice);
       } else if("eld" === args.substring(0,3)){
         resp.message = damage_message(args.substring(3),Eld);
       } else if("seld" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Eld, sobdice);
+      } else if("meld" === args.substring(0,4)){
+        resp.message = damage_message(args.substring(4),Eld, mobdice);
       } else if("fall" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Fall);
       } else if("sfall" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Fall, sobdice);
+      } else if("mfall" === args.substring(0,5)){
+        resp.message = damage_message(args.substring(5),Fall, mobdice);
       } else if("slag" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Slag);
       } else if("sslag" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Slag, sobdice);
+      } else if("mslag" === args.substring(0,5)){
+        resp.message = damage_message(args.substring(5),Slag, mobdice);
       } else {
         resp.message = 'Unknown command.';        
       }
       resp.message = `${user}:\n`+"```"+resp.message+"```"
+      log.info("bot sending reply", resp.message);
       bot.sendMessage(resp);
     } catch (error) {
       bot.sendMessage({
         to: channelID,
         message: `${error}`
       });
-      logger.error(error);
+      log.error(error);
     }
   }
 })

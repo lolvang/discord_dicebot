@@ -8,7 +8,7 @@
   "license": "MIT",
   "dependencies": {
     "discord.io": "github:izy521/discord.io#master",
-    "winston": "^2.3.1"
+    "winston": "^3.0.0"
   },
   "devDependencies": {
     "@types/node": "^10.3.5",
@@ -17,8 +17,8 @@
   },
   "scripts": {
     "tsc": "tsc",
-    "docker": "docker build -t dicebot -f Dockerfile .",
-    "start": "docker run -t -d --name dicebot --restart always dicebot",
+    "docker": "docker build -t dicebot -f Dockerfile .",    
+    "start": "docker run -t -d --name dicebot --network=host --restart always dicebot",
     "down": "docker rm -f dicebot"
   }
 }

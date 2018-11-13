@@ -41,3 +41,20 @@ export function sobdice(n,s):[number,number[]]{
   rolls.push(m);
   return [sum+m, rolls];
 }
+
+export function mobdice(n,s):[number,number[]]{
+  if(n>3){
+    let m = n-3;
+    let [osum, orolls] = obdice(3,s);
+    let [msum, mrolls] = dice(m,s);
+    return [osum+msum, orolls.concat(mrolls)];
+  } else if(n<3){
+    let m = Math.abs(n-3);
+    let [osum, orolls] = obdice(3,s);
+    let [msum, mrolls] = dice(m,s);
+    osum -= msum;
+    return [osum, orolls.concat(mrolls.map(x=>-x))];
+  } else {
+    return obdice(n,s);
+  }
+}
