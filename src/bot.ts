@@ -123,7 +123,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
   // Our bot needs to know if it needs to execute a command
   // for this script it will listen for messages that will start with `!`
   if (message.substring(0, 1) == '!') {
-    log.info("bot read", message);
+    log.info(`bot read: ${message}`);
     try {
       var args = message.substring(1).toLowerCase();
       var resp = {to:channelID,message:""};
@@ -177,7 +177,7 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         resp.message = 'Unknown command.';        
       }
       resp.message = `${user}:\n`+"```"+resp.message+"```"
-      log.info("bot sending reply", resp.message);
+      log.info(`bot sending reply: ${resp.message}`);
       bot.sendMessage(resp);
     } catch (error) {
       bot.sendMessage({
