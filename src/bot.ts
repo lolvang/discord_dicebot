@@ -7,7 +7,7 @@ import {Kross} from "./kross";
 import {Slag} from "./slag";
 import {Fall} from "./fall";
 import {Eld} from "./eld";
-import {randint,dice,obdice,sobdice,mobdice} from "./util"
+import {randint,dice,obdice,sobdice,mobdice,fobdice} from "./util"
 import {log} from "./logger"
 
 let hit_location = {
@@ -133,6 +133,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         resp.message = roll_message(args.substring(3), sobdice);
       } else if("mob" === args.substring(0,3)){
         resp.message = roll_message(args.substring(3), mobdice);
+      } else if("fob" === args.substring(0,3)){
+        resp.message = roll_message(args.substring(3), fobdice);
       } else if ("roll" === args.substring(0, 4)) {
         resp.message = roll_message(args.substring(4), dice);        
       } else if("hit" === args.substring(0,3)){
@@ -143,35 +145,47 @@ bot.on('message', function (user, userID, channelID, message, evt) {
         resp.message = damage_message(args.substring(4),Hugg, sobdice);
       } else if("mhugg" === args.substring(0,5)){
         resp.message = damage_message(args.substring(4),Hugg, mobdice);
+      } else if("fhugg" === args.substring(0,5)){
+        resp.message = damage_message(args.substring(4),Hugg, fobdice);
       } else if("stick" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Stick);
       } else if("sstick" === args.substring(0,6)){
         resp.message = damage_message(args.substring(6),Stick, sobdice);
       } else if("mstick" === args.substring(0,6)){
         resp.message = damage_message(args.substring(6),Stick, mobdice);
+      } else if("fstick" === args.substring(0,6)){
+        resp.message = damage_message(args.substring(6),Stick, fobdice);
       } else if("kross" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Kross);
       } else if("skross" === args.substring(0,6)){
         resp.message = damage_message(args.substring(6),Kross, sobdice);
       } else if("mkross" === args.substring(0,6)){
         resp.message = damage_message(args.substring(6),Kross, mobdice);
+      } else if("fkross" === args.substring(0,6)){
+        resp.message = damage_message(args.substring(6),Kross, fobdice);
       } else if("eld" === args.substring(0,3)){
         resp.message = damage_message(args.substring(3),Eld);
       } else if("seld" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Eld, sobdice);
       } else if("meld" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Eld, mobdice);
+      } else if("feld" === args.substring(0,4)){
+        resp.message = damage_message(args.substring(4),Eld, fobdice);
       } else if("fall" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Fall);
       } else if("sfall" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Fall, sobdice);
       } else if("mfall" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Fall, mobdice);
+      } else if("ffall" === args.substring(0,5)){
+        resp.message = damage_message(args.substring(5),Fall, mobdice);
       } else if("slag" === args.substring(0,4)){
         resp.message = damage_message(args.substring(4),Slag);
       } else if("sslag" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Slag, sobdice);
       } else if("mslag" === args.substring(0,5)){
+        resp.message = damage_message(args.substring(5),Slag, mobdice);
+      } else if("fslag" === args.substring(0,5)){
         resp.message = damage_message(args.substring(5),Slag, mobdice);
       } else {
         resp.message = 'Unknown command.';        

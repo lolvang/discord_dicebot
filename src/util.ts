@@ -58,3 +58,12 @@ export function mobdice(n,s):[number,number[]]{
     return obdice(n,s);
   }
 }
+
+export function fobdice(n,s):[number, number[]]{
+  let k = Math.floor((s+1)/2);
+  let l = Math.ceil((s+1)/2);
+  let m = l*(n-2) + k*2;
+  let [psum, prolls] = obdice(2,s);
+  let [nsum, nrolls] = obdice(2,s);
+  return [m+psum-nsum, prolls.concat(nrolls.map(x=>-x))];
+}
